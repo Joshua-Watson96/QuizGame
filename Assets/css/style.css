@@ -1,0 +1,10 @@
+*
+.header {
+    background-color: lightblue;
+    text-align: center;
+}
+
+header h1 h2 {
+font-size: 40px;
+color: black;
+}
