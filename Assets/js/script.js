@@ -3,9 +3,20 @@
 // var quizQuestions = document.querySelector("quizQuestions");
 var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
+var startQuizEl = document.querySelector('#startQuiz');
+var questionEl = document.getElementById('question')
 // startGameButton.addEventListener("click"); 
 
- var startQuiz = true;
+
+
+function startQuiz() {
+    console.log("haha")
+    timerCount = 60;
+    startQuiz.disable = true;
+    questionEl.textContent = (questions)
+}
+
+startQuizEl.addEventListener("click", startQuiz);
 
  var quizQuestions = [{
 
@@ -41,18 +52,18 @@ var mainEl = document.getElementById('main');
     },
     
 ];
-
+console.log(quizQuestions)
 // Wthis is the function that occurs when startQuiz is clicked
-function questions (id) 
+function questions(id) {
+    
+   var question = document.getElementById("question");
 
-    const question = document.getElementById("question");
+   question,innerText = quizQuestions[id].question;
 
-    question.innerText = quizQuestions[id].question;
-
-   const ansA = document.getElementById('ansA');
-   const ansB = document.getElementById('ansB');
-   const ansC = document.getElementById('ansC');
-   const ansD = document.getElementById('ansD');
+   var ansA = document.getElementById('ansA');
+   var ansB = document.getElementById('ansB');
+   var ansC = document.getElementById('ansC');
+   var ansD = document.getElementById('ansD');
 
    ansA.innerText = quizQuestions[id].answer[0].text;
    ansB.innerText = quizQuestions[id].answer[1].text;
@@ -97,6 +108,9 @@ function questions (id)
     ansD.style.backgroundColor = "red";
     selected = ansD.value;
    })
+}
+
+   console.log(questions)
 
 var numberCountdown = "";
 function countdown(){
@@ -129,7 +143,7 @@ var msgInterval = setInterval(function (){
     }, 1000);
 
 }
-    
+console.log (countdown) 
 countdown();
 
 
