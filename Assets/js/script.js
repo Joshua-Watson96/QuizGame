@@ -1,13 +1,49 @@
 // Variables
 // var container = document.querySelector("quiz-container");
 // var quizQuestions = document.querySelector("quizQuestions");
-
-startGameButton.addEventListener("click"); 
+var timerEl = document.getElementById('countdown');
+var mainEl = document.getElementById('main');
+// startGameButton.addEventListener("click"); 
 
  var startQuiz = true;
 
+ var quizQuestions = [{
+
+    id: 0,
+    question: "What is 2+2",
+    answer: [
+        {text: "3", isCorrect: false },
+        {text: "4", isCorrect: true },
+        {text: "7", isCorrect: false },
+        {text: "11", isCorrect: false},
+    ]
+    },
+    {  
+
+    id: 1, 
+    question: "What is the capital city of Australia?",
+    answer: [
+        {text: "Brisbane", isCorrect: false },
+        {text: "Canberra", isCorrect: true },
+        {text: "Melbourne", isCorrect: false },
+        {text: "Sydney", isCorrect: false },
+    ]
+    },
+    {   
+        id: 2,
+    question: "What is 10 + 12?",
+    answer: [
+        {text: "22", isCorrect: true},
+        {text: "10", isCorrect: false},
+        {text: "18", isCorrect: false},
+        {text: "34", isCorrect: false},
+    ]
+    },
+    
+];
+
 // Wthis is the function that occurs when startQuiz is clicked
-function startQuiz(id) {
+function questions (id) 
 
     const question = document.getElementById("question");
 
@@ -18,15 +54,15 @@ function startQuiz(id) {
    const ansC = document.getElementById('ansC');
    const ansD = document.getElementById('ansD');
 
-   ansA.innerText = quizQuestions[id].answers[0].text;
-   ansB.innerText = quizQuestions[id].answers[1].text;
-   ansC.innerText = quizQuestions[id].answers[2].text;
-   ansD.innerText = quizQuestions[id].answers[3].text;
+   ansA.innerText = quizQuestions[id].answer[0].text;
+   ansB.innerText = quizQuestions[id].answer[1].text;
+   ansC.innerText = quizQuestions[id].answer[2].text;
+   ansD.innerText = quizQuestions[id].answer[3].text;
 
-   ansA.value = quizQuestions[id].answers[0].isCorrect;
-   ansB.value = quizQuestions[id].answers[1].isCorrect;
-   ansC.value = quizQuestions[id].answers[2].isCorrect;
-   ansD.value = quizQuestions[id].answers[3].isCorrect;
+   ansA.value = quizQuestions[id].answer[0].isCorrect;
+   ansB.value = quizQuestions[id].answer[1].isCorrect;
+   ansC.value = quizQuestions[id].answer[2].isCorrect;
+   ansD.value = quizQuestions[id].answer[3].isCorrect;
 
    var selected = "";
 
@@ -61,43 +97,45 @@ function startQuiz(id) {
     ansD.style.backgroundColor = "red";
     selected = ansD.value;
    })
-   
 
+var numberCountdown = "";
+function countdown(){
+    var timeleft = 60;
+
+var timeInterval = setInterval(function (){
+    if (timeleft > 1) {
+        timerEl.textContent = timeleft + ' Seconds remaining';
+        timeleft--;
+    } else if (timeleft === 1) {
+        timerEl.textContent = timeleft + ' seconds remaining';
+        timeleft--;
+    } else {
+        timerEl.textContent = '';
+        clearInterval(timeInterval);
+        displayMessage();
+    }
+}, 1000);
 }
 
+function displayMessage(){
+    var numberCount = 0;
+var msgInterval = setInterval(function (){
+    if (numberCountdown[numberCount] === undefined) {
+        clearInterval(msgInterval);
+    } else {
+        mainEl.textContent = numberCountdown[numberCount];
+        numberCount++;
+    }
+    }, 1000);
+
+}
+    
+countdown();
 
 
 
-const quizQuestions = [{
-        id: 0,
-        question: "What is 2+2",
-        answers: [
-            {text: "3", isCorrect: false },
-            {text: "4", isCorrect: true },
-            {text: "7", isCorrect: false },
-            {text: "11", isCorrect: false},
-        ]
-        },
-        
-    {  
-        id: 1, 
-        question: "What is the capital city of Australia?",
-        answers: [
-            {text: "Brisbane", isCorrect: false },
-            {text: "Canberra", isCorrect: true },
-            {text: "Melbourne", isCorrect: false },
-            {text: "Sydney", isCorrect: false },
-        ]
-        },
-        
-    {   id: 2,
-        question: "What is 10 + 12?",
-        answers: [
-            {text: "22", isCorrect: true},
-            {text: "10", isCorrect: false},
-            {text: "18", isCorrect: false},
-            {text: "34", isCorrect: false},
-        ]
-        },
-        
-];
+
+
+
+
+
