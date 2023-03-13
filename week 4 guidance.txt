@@ -1,0 +1,76 @@
+week 4 assignment;
+
+-High score page
+	Shows highscore
+	data needs to be persistent (localstorage 'Activity 21-26')
+
+-landing page
+	button, onClick, starts the play
+
+-play page
+	Timer countdown (timer interval 'activity 9-10')
+	Multiple button click (activity 19-20) 
+	Showing/hiding elements (activity 7-8)
+
+
+**build seperately, one page at a time**
+
+---- Acceptance Criteria ---
+GIVEN I am taking a code quiz
+WHEN I click the start button
+THEN a timer starts and I am presented with a question
+
+WHEN I answer a question
+THEN I am presented with another question
+
+WHEN I answer a question incorrectly
+THEN time is subtracted from the clock
+
+WHEN all questions are answered or the timer reaches 0
+THEN the game is over
+
+WHEN the game is over
+THEN I can save my initials and my score
+
+
+build landing page first ->
+build play page second ->
+build high score page third ->
+
+
+Quiz Game Plan:
+
+index.html --- draft
+- heading (Quiz Game, Good luck! 
+	click to play!)
+
+- body ( div class - card)
+   div class - card header
+	h2 Please select whichever you think is the correct answer h2
+
+   div class = "question"
+
+   div class = "card-body"
+	textarea
+	readonly	
+	id="answers"
+	placeholder=answers"
+	textarea	
+	
+   div class = "card-footer"
+	button id = answers class = btn
+
+style.css --- draft
+
+enter relevant css information for page styling and media and screen query @ 762 pixel
+Dont go overboard, make it so it simple, yet effective
+
+script.js --- draft
+assign variables
+	var generatePlayButton = document.queryselector("#play")
+	var answers
+	var questions
+	
+assign functions
+	function Answers
+	function questions

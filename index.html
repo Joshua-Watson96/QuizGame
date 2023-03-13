@@ -4,19 +4,48 @@
 
     <meta charset = "UTF-8"/>
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <meta http-equiv="X-UA-Compatible" content="ie=edge" /> -->
     <title> Quiz Game</title>
-    <link rel = "stylesheet" href = "./assets/reset.css">
-    <link rel = "stylesheet" href = "./assets/style.css">
+    <link rel = "stylesheet" href = "Assets/css/reset.css">
+    <link rel = "stylesheet" href = "Assets/css/style.css">
     
 </head>
+
+<body>
 
 <header class = "header">
     <h1> Play my quiz!</h1>
     <h2> Goodluck!</h2>
 </header>
-<body>
+
+<main>
+    <section> 
+    <div class = "openingButtons">
+    <button id = "startQuiz"> Start Quiz </button>
+    <button id = "highScores"> High Scores </button>
+    </section>
+<div>
+
+<section>
+    <div class = "quiz-container" id ="question"></div>
+
+    <div class = "options-container"></div>
+        <button class = "answer" id = "ansA"> answerA</button>
+        <button class = "answer" id = "ansB"> answerB</button>
+        <button class = "answer" id = "ansC"> answerC</button>
+        <button class = "answer" id = "ansD"> answerD</button>
+        
     
-    <script src = "./Assets/js/script.js"></script>
+</div>
+</section>
+
+
+
+<script src = "Assets/js/script.js"></script>
+
+</main>
+<footer>
+   <h3> Made by Josh Watson 2023 </h3>
+</footer>
 </body>
 </html>
