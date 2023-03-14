@@ -19,15 +19,15 @@
 </header>
 
 <main>
-<div class = "openingButtons">
+<div class = "openingButtons" id = "startScreen">
 
     <button id = "startQuiz"> Start Quiz </button>
     <button id = "highScores"> High Scores </button>
     
 </div>
 
-
-    <div class = "quiz-container" id ="question"></div>
+<div class = "hidden" id = "quiz-container">
+    <div class ="questions-container"  id ="question"></div>
 
     <div class = "options-container">
         <button class = "answers" id = "ansA"> answerA</button>
@@ -35,7 +35,7 @@
         <button class = "answers" id = "ansC"> answerC</button>
         <button class = "answers" id = "ansD"> answerD</button>
      </div>
-
+    </div>
 <div class = "timer=container">
     <h2 id = "countdown"></h2>
     <h3 id = "main"></h3>

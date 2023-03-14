@@ -25,6 +25,7 @@ margin-bottom: 60px;
 .options-container {
     font-size: 30px;
     margin-bottom: 60px;
+    display: hidden;
 }
 
 footer {
@@ -33,9 +34,13 @@ footer {
     color: blueviolet;
 }
 
-.quiz-container {
+.questions-container {
     font-size: 50px;
     color: black;
     margin-bottom: 20px;
+    display: hidden;
 }
 
+.hidden {
+    display: none;
+}
