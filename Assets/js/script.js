@@ -7,21 +7,28 @@ var startQuizEl = document.querySelector('#startQuiz');
 var questionEl = document.getElementById('question')
 // startGameButton.addEventListener("click"); 
 
+// quizQuestions.style.display = 'hidden';
 
+var start = true;
 
 function startQuiz() {
-    console.log("haha")
+    console.log(startQuiz)
+    quizQuestions.style.display = 'visible';
     timerCount = 60;
     startQuiz.disable = true;
-    questionEl.textContent = (questions)
+    questionEl.textContent = (quizQuestions)
 }
 
 startQuizEl.addEventListener("click", startQuiz);
+ 
+function displayQuestion(){
+    
+}
 
  var quizQuestions = [{
 
     id: 0,
-    question: "What is 2+2",
+    question: "What is 2+2?",
     answer: [
         {text: "3", isCorrect: false },
         {text: "4", isCorrect: true },
@@ -52,13 +59,25 @@ startQuizEl.addEventListener("click", startQuiz);
     },
     
 ];
-console.log(quizQuestions)
-// Wthis is the function that occurs when startQuiz is clicked
+
+console.log(quizQuestions);
+
+var answers = document.getElementsByClassName('answers')
+
+function onClickedAnswer(answers) {
+    if (answers.addEventListener('click'))
+    displayQuestion();
+    
+};
+    
+
+
+// this is the function that occurs when startQuiz is clicked
 function questions(id) {
     
    var question = document.getElementById("question");
 
-   question,innerText = quizQuestions[id].question;
+   question.innerText = quizQuestions[id].question;
 
    var ansA = document.getElementById('ansA');
    var ansB = document.getElementById('ansB');
@@ -79,32 +98,32 @@ function questions(id) {
 
    ansA.addEventListener("click", () => {
     ansA.style.backgroundColor = "red";
-    ansB.style.backgroundColor = "blue";
-    ansC.style.backgroundColor = "blue";
-    ansD.style.backgroundColor = "blue";
+    ansB.style.backgroundColor = "lightblue";
+    ansC.style.backgroundColor = "lightblue";
+    ansD.style.backgroundColor = "lightblue";
     selected = ansA.value;
    })
 
    ansB.addEventListener("click", () =>{
-    ansA.style.backgroundColor = "blue";
+    ansA.style.backgroundColor = "lightblue";
     ansB.style.backgroundColor = "red";
-    ansC.style.backgroundColor = "blue";
-    ansD.style.backgroundColor = "blue";
+    ansC.style.backgroundColor = "lightblue";
+    ansD.style.backgroundColor = "lightblue";
     selected = ansB.value;
    })
 
    ansC.addEventListener("click", () => {
-   ansA.style.backgroundColor = "blue";
-   ansB.style.backgroundColor = "blue";
+   ansA.style.backgroundColor = "lightblue";
+   ansB.style.backgroundColor = "lightblue";
    ansC.style.backgroundColor = "red";
-   ansD.style.backgroundColor = "blue";
+   ansD.style.backgroundColor = "lightblue";
    selected = ansC.value;
    })
 
    ansD.addEventListener("click", () => {
-    ansA.style.backgroundColor = "blue";
-    ansB.style.backgroundColor = "blue";
-    ansC.style.backgroundColor = "blue";
+    ansA.style.backgroundColor = "lightblue";
+    ansB.style.backgroundColor = "lightblue";
+    ansC.style.backgroundColor = "lightblue";
     ansD.style.backgroundColor = "red";
     selected = ansD.value;
    })
@@ -112,6 +131,9 @@ function questions(id) {
 
    console.log(questions)
 
+if (start) {
+    questions("0");
+}
 var numberCountdown = "";
 function countdown(){
     var timeleft = 60;
