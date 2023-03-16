@@ -7,7 +7,7 @@ var startQuizEl = document.querySelector('#startQuiz');
 var questionEl = document.getElementById('question');
 // startGameButton.addEventListener("click"); 
 var startBtn = document.getElementById('startQuiz');
-var currentIndex = 0;
+var currentQuestionIndex = 0;
 // quizQuestions.style.display = 'hidden';
 
 var start = true;
@@ -45,28 +45,27 @@ var quizQuestions = [
         {text: "34", isCorrect: false},
     ]
     },
-    
+    {
+      id: 3,
+      question: "What is the third day of the week?",
+      answer: [
+        {text: "Monday", isCorrect: false },
+        {text: "Thursday", isCorrect: false },
+        {text: "Friday", isCorrect: false },
+        {text: "Wednesday", isCorrect: true }
+      ]
+    }
 ];
 
 
 
 function startQuiz() {
-    // var startQuiz = document.getElementById("startScreen");
     container.removeAttribute("class");
     console.log(startQuiz);
     timerCount = 60;
     startQuiz.disable = true;
     
-}
-
-
- 
-function displayQuestion(){
-    var currentQuestion = quizQuestions[currentIndex];
-
-}
-
- 
+};
 
 console.log(quizQuestions);
 
@@ -89,49 +88,64 @@ function getQuestion() {
     // loop over choices
     currentQuestion.choices.forEach(function(choice, i) {
       // create new button for each choice
-      var choiceNode = document.createElement("button");
-      choiceNode.setAttribute("class", "choice");
-      choiceNode.setAttribute("value", choice);
-      choiceNode.textContent = i + 1 + ". " + choice;
-      // attach click event listener to each choice
-      choiceNode.onclick = questionClick;
-      // display on the page
-      choicesEl.appendChild(choiceNode);
-    });
-  }
+    //   var choiceNode = document.createElement("button");
+    //   choiceNode.setAttribute("class", "choice");
+    //   choiceNode.setAttribute("value", choice);
+    //   choiceNode.textContent = i + 1 + ". " + choice;
+    //   // attach click event listener to each choice
+    //   choiceNode.onclick = questionClick;
+    //   // display on the page
+    //   choicesEl.appendChild(choiceNode);
+    // });
+   })
+  };
 
-    function questionClick() {
-    // check if user guessed wrong
-    if (this.value !== questions[currentQuestionIndex].answer) {
-      // penalize time
-      time -= 15;
-      if (time < 0) {
-        time = 0;
-      }
-      // display new time on page
-      timerEl.textContent = time;
-      // play "wrong" sound effect
-      sfxWrong.play();
-      feedbackEl.textContent = "Wrong!";
-    } else {
-      // play "right" sound effect
-      sfxRight.play();
-      feedbackEl.textContent = "Correct!";
+  //   function questionClick() {
+  //   // check if user guessed wrong
+  //   if (this.value !== questions[currentQuestionIndex].answer) {
+  //     // penalize time
+  //     time -= 15;
+  //     if (time < 0) {
+  //       time = 0;
+  //     }
+  //     // display new time on page
+  //     timerEl.textContent = time;
+  //     // play "wrong" sound effect
+  //     sfxWrong.play();
+  //     feedbackEl.textContent = "Wrong!";
+  //   } else {
+  //     // play "right" sound effect
+  //     sfxRight.play();
+  //     feedbackEl.textContent = "Correct!";
+  //   }
+  //   // flash right/wrong feedback on page for half a second
+  //   feedbackEl.setAttribute("class", "feedback");
+  //   setTimeout(function() {
+  //     feedbackEl.setAttribute("class", "feedback hide");
+  //   }, 1000);
+  //   // move to next question
+  //   currentQuestionIndex++;
+  //   // check if we've run out of questions
+  // }
+  //   if (currentQuestionIndex === questions.length) {
+  //     quizEnd();
+  //   } else {
+  //     getQuestion();
+  //   }
+  // ;
+
+  function nextQuestion() {
+    ansA.innerText = quizQuestions[currentQuestionIndex].answer[0].text;
+    ansB.innerText = quizQuestions[currentQuestionIndex].answer[1].text;
+    ansC.innerText = quizQuestions[currentQuestionIndex].answer[2].text;
+    ansD.innerText = quizQuestions[currentQuestionIndex].answer[3].text;
+    question.innerText = quizQuestions[currentQuestionIndex].question;
+    currentQuestionIndex++; 
+    
+    if (currentQuestionIndex === question.length) {
+      quizEnd()
     }
-    // flash right/wrong feedback on page for half a second
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function() {
-      feedbackEl.setAttribute("class", "feedback hide");
-    }, 1000);
-    // move to next question
-    currentQuestionIndex++;
-    // check if we've run out of questions
-    if (currentQuestionIndex === questions.length) {
-      quizEnd();
-    } else {
-      getQuestion();
-    }
-  }
+  };
 
 
 // this is the function that occurs when startQuiz is clicked
@@ -164,6 +178,7 @@ function questions(id) {
     ansC.style.backgroundColor = "lightblue";
     ansD.style.backgroundColor = "lightblue";
     selected = ansA.value;
+    nextQuestion()
    })
 
    ansB.addEventListener("click", () =>{
@@ -172,6 +187,7 @@ function questions(id) {
     ansC.style.backgroundColor = "lightblue";
     ansD.style.backgroundColor = "lightblue";
     selected = ansB.value;
+    nextQuestion()
    })
 
    ansC.addEventListener("click", () => {
@@ -180,6 +196,7 @@ function questions(id) {
    ansC.style.backgroundColor = "red";
    ansD.style.backgroundColor = "lightblue";
    selected = ansC.value;
+   nextQuestion()
    })
 
    ansD.addEventListener("click", () => {
@@ -188,6 +205,7 @@ function questions(id) {
     ansC.style.backgroundColor = "lightblue";
     ansD.style.backgroundColor = "red";
     selected = ansD.value;
+    nextQuestion()
    })
 }
 
