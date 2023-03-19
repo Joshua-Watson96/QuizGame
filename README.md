@@ -6,3 +6,5 @@ What you are greeted with when you first open the website
 
 What you see after clicking 'Start Quiz'
 ![Alt](./Assets/images/buttonPress.png)
+
+deployed website: https://joshua-watson96.github.io/QuizGame/
