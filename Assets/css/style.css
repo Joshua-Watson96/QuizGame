@@ -1,14 +1,18 @@
+
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
 }
 
+/* sets the bodies background coolour, text colour and text alignment */
 body {
     background-color:wheat;
     color: white;
     text-align: center;
 }
+
+/* sets the header elements properties */
 header {
     background-color: wheat;
     color: black;
@@ -17,23 +21,27 @@ header {
     margin-bottom: 40px;
 }
 
+/* sets the opening buttons font size and margin-bottom */
 .openingButtons {
 font-size: 40px;
 margin-bottom: 60px;
 }
 
+/* sets the options-containers font-size, margin-bottom and its display to hidden */
 .options-container {
     font-size: 30px;
     margin-bottom: 60px;
     display: hidden;
 }
 
+/* sets the footer elements properties */
 footer {
     margin-top: 60px;
     font-size: 20px;
     color: blueviolet;
 }
 
+/* sets properties for questions-container */
 .questions-container {
     font-size: 50px;
     color: black;
@@ -41,6 +49,7 @@ footer {
     display: hidden;
 }
 
+/* sets properties for hidden */
 .hidden {
     display: none;
 }

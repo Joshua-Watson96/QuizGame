@@ -1,19 +1,24 @@
 // Variables
 var container = document.getElementById("quiz-container");
-// var quizQuestions = document.querySelector("quizQuestions");
 var timerEl = document.getElementById('countdown');
 var mainEl = document.getElementById('main');
 var startQuizEl = document.querySelector('#startQuiz');
-// var questionEl = document.getElementById('question');
-// startGameButton.addEventListener("click"); 
 var startBtn = document.getElementById('startQuiz');
 var questionEl = document.getElementById('question');
 var currentQuestionIndex = 0;
+var timer = 60;
+var score = 0;
+var allScores = [];
 
-// quizQuestions.style.display = 'hidden';
+// sets the properties for updateTimer
+function updateTimer (){
+  document.querySelector('#countdown').innerHTML = timer;
+}
 
+// sets the start variable to true
 var start = true;
 
+// sets the questions that will be in the quiz
 var quizQuestions = [
     
     {
@@ -48,93 +53,41 @@ var quizQuestions = [
     },
     {
       id: 3,
-      question: "What is the third day of the week?",
+      question: "What day comes after Tuesday?",
       answer: [
         {text: "Monday", isCorrect: false },
         {text: "Thursday", isCorrect: false },
         {text: "Friday", isCorrect: false },
-        {text: "Wednesday", isCorrect: true }
+        {text: "Wednesday", isCorrect: true },
       ]
+    },
+    {
+      id: 4,
+      question: "What day comes after Monday?",
+      answer: [
+        {text: "Tuesday", isCorrect: true },
+        {text: "Thursday", isCorrect: false },
+        {text: "Friday", isCorrect: false },
+        {text: "Wednesday", isCorrect: false },
+      ]
+
     }
 ];
 
 
-
+// sets the properties for startQuiz
 function startQuiz() {
     container.removeAttribute("class");
     console.log(startQuiz);
-    timerCount = 60;
-    startQuiz.disable = true;
-    
 };
 
+
+//console logs the quizQuestion variable
 console.log(quizQuestions);
 
 var answers = document.getElementsByClassName('answers')
 
-// function onClickedAnswer(answers) {
-//     if (answers.addEventListener('click'))
-//     displayQuestion();
-    
-// };
-    
-function getQuestion() {
-    // get current question object from array
-    var currentQuestion = quizQuestions[currentQuestionIndex];
-    // update title with current question
-    var questionEl = document.getElementsByClassName("questions-container");
-    questionEl.textContent = currentQuestion.title;
-    // clear out any old question choices
-    questionEl.innerHTML = "";
-    // loop over choices
-    currentQuestion.choices.forEach(function(choice, i) {
-      // create new button for each choice
-    //   var choiceNode = document.createElement("button");
-    //   choiceNode.setAttribute("class", "choice");
-    //   choiceNode.setAttribute("value", choice);
-    //   choiceNode.textContent = i + 1 + ". " + choice;
-    //   // attach click event listener to each choice
-    //   choiceNode.onclick = questionClick;
-    //   // display on the page
-    //   choicesEl.appendChild(choiceNode);
-    // });
-   })
-  };
-
-  //   function questionClick() {
-  //   // check if user guessed wrong
-  //   if (this.value !== questions[currentQuestionIndex].answer) {
-  //     // penalize time
-  //     time -= 15;
-  //     if (time < 0) {
-  //       time = 0;
-  //     }
-  //     // display new time on page
-  //     timerEl.textContent = time;
-  //     // play "wrong" sound effect
-  //     sfxWrong.play();
-  //     feedbackEl.textContent = "Wrong!";
-  //   } else {
-  //     // play "right" sound effect
-  //     sfxRight.play();
-  //     feedbackEl.textContent = "Correct!";
-  //   }
-  //   // flash right/wrong feedback on page for half a second
-  //   feedbackEl.setAttribute("class", "feedback");
-  //   setTimeout(function() {
-  //     feedbackEl.setAttribute("class", "feedback hide");
-  //   }, 1000);
-  //   // move to next question
-  //   currentQuestionIndex++;
-  //   // check if we've run out of questions
-  // }
-  //   if (currentQuestionIndex === questions.length) {
-  //     quizEnd();
-  //   } else {
-  //     getQuestion();
-  //   }
-  // ;
-
+ // makes the next question appear after choosing an answer
   function nextQuestion() {
     ansA.innerText = quizQuestions[currentQuestionIndex].answer[0].text;
     ansB.innerText = quizQuestions[currentQuestionIndex].answer[1].text;
@@ -143,56 +96,10 @@ function getQuestion() {
     question.innerText = quizQuestions[currentQuestionIndex].question;
     currentQuestionIndex++; 
     
-    if (currentQuestionIndex === question.length) {
+    if (currentQuestionIndex === questions.length) {
       quizEnd()
     }
   };
-
-    currentQuestion.answer.forEach(function(answers, i) {
-      // // create new button for each choice
-      // var choiceNode = document.getElementById("answers");
-      // choiceNode.setAttribute("id", "answers");
-      // choiceNode.setAttribute("value", choice);
-      // choiceNode.textContent = i + 1 + ". " + choice;
-      // attach click event listener to each choice
-      gameBtns.onClick = questionClick();
-      // display on the page
-      questionEl.appendChild(choiceNode)
-    });
-  
-
-    function questionClick() {
-    // check if user guessed wrong
-  // if (this.value !== questions[currentQuestionIndex].answer) {
-  //     // penalize time
-  //     // time -= 15;
-  //     // if (time < 0) {
-  //     //   time = 0;
-  //     // }
-  //     // display new time on page
-  //     timerEl.textContent = time;
-  //   //   // play "wrong" sound effect
-  //   //   sfxWrong.play();
-  //   //   feedbackEl.textContent = "Wrong!";
-  //   // } else {
-  //   //   // play "right" sound effect
-  //   //   sfxRight.play();
-  //   //   feedbackEl.textContent = "Correct!";
-  //   }
-    // flash right/wrong feedback on page for half a second
-    // feedbackEl.setAttribute("class", "feedback");
-    // setTimeout(function() {
-    //   feedbackEl.setAttribute("class", "feedback hide");
-    // }, 1000);
-    // move to next question
-    currentQuestionIndex++;
-    // check if we've run out of questions
-    if (currentQuestionIndex === quizQuestions.length) {
-    } else {
-      getQuestion();
-    }
-  }
-
 
 
 // this is the function that occurs when startQuiz is clicked
@@ -261,10 +168,16 @@ function questions(id) {
 if (start) {
     questions("0");
 }
+
+// sets the properties for the endscreen
+var endScreen = document.createElement('div');
+endScreen.classList.add('end-screen');
+document.querySelector('highscore-container')
 var numberCountdown = "";
+ // sets the amount of timeleft in the countdown function
 function countdown(){
     var timeleft = 60;
-
+ // sets the time for the timeInterval
 var timeInterval = setInterval(function (){
     if (timeleft > 1) {
         timerEl.textContent = timeleft + ' Seconds remaining';
@@ -279,7 +192,7 @@ var timeInterval = setInterval(function (){
     }
 }, 1000);
 }
-
+ // sets the properties for displayMessage function
 function displayMessage(){
     var numberCount = 0;
 var msgInterval = setInterval(function (){
@@ -292,9 +205,14 @@ var msgInterval = setInterval(function (){
     }, 1000);
 
 }
+ // ends the quiz
+function quizEnd (){
+  
+  
+}
 console.log (countdown) 
 countdown();
-
+ //makes the start quiz button, start the quiz
 startBtn.addEventListener("click", startQuiz);
 
 
